@@ -29,7 +29,7 @@ app.use((req, res, next) =>{
 
 app.use('/term-reports', termReportRoute);
 // app.use('/feedback-reports', feedbackReports);
-// app.use('/absence', absence);
+app.use('/absence', absence);
 // app.use('/statistics-report', statisticsReport);
 
 app.use((req, res, next) => {
