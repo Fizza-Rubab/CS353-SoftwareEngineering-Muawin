@@ -6,7 +6,6 @@ var mocha = require('mocha')
 //var assert = require('chai').assert
 
 // var mock = require('sails-mock-models');
-// var Grades = {Name: "Ruhama Naeem", Course: "SE", A1:78, A2:85, Midterm:86, A3:90, Final:96 };
 // mock.mockModel(getGrades, 'find', Grades);
 
 
