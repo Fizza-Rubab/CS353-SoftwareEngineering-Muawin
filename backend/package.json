@@ -13,10 +13,14 @@
   "dependencies": {
     "body-parser": "^1.20.0",
     "express": "^4.17.3",
+    "fetch": "^1.1.0",
+    "jquery": "^3.6.0",
     "morgan": "^1.10.0",
+    "node-fetch": "^3.2.3",
     "nodemailer": "^6.7.3",
     "pdfkit": "^0.13.0",
-    "pdfkit-table": "^0.1.86"
+    "pdfkit-table": "^0.1.86",
+    "request": "^2.88.2"
   },
   "devDependencies": {
     "nodemon": "^2.0.15"
