@@ -3,24 +3,26 @@ var assert = require('assert');
 const request = require('request');
 const sinon = require('sinon');
 var mocha = require('mocha')
-//var assert = require('chai').assert
-
-// var mock = require('sails-mock-models');
-// mock.mockModel(getGrades, 'find', Grades);
-
 
 function getStudents(classId, termId){
     // query would be run here to fetch all students 
-    return {Class: "5A", Term: "2021", Students: {1:{Id: 2423, Name:"Fakeha"} , 2:{Id: 3142, Name:"Shamsa"}, 3:{Id: 5432, Name:"Aiman"}, 4:{Id: 5483, Name:"Ruhama"}, 5:{Id: 8746, Name:"Aumaima"}, 6:{Id: 6543, Name:"Marium"}, 7:{Id: 3564, Name:"Fizza"}, 8:{Id: 5948, Name:"Adnan"}, 9:{Id: 4634, Name:"Mubaraka"}, 10:{Id: 3984, Name:"Sameer"}}}
+    return {Class: "5A", Term: "2021", Students: [{Id: 2423, Name:"Fakeha"} , {Id: 3142, Name:"Shamsa"},
+    {Id: 5432, Name:"Aiman", Email:"aiman.umme39@gmail.com"}, {Id: 5483, Name:"Ruhama", Email:"rn06169@st.habib.edu.pk"}, {Id: 8746, Name:"Aumaima", Email:"ar06173@st.habib.edu.pk"}, 
+    {Id: 6543, Name:"Marium", Email:"mr06187@st.habib.edu.pk"},
+    {Id: 3564, Name:"Fizza", Email:"fr06161@st.habib.edu.pk" }, {Id: 5948, Name:"Adnan", Email:"aa06204@st.habib.edu.pk"}, 
+    {Id: 4634, Name:"Mubaraka", Email:"ms06171@st.habib.edu.pk"}, {Id: 3984, Name:"Sameer", Email:"sp05565@st.habib.edu.pk"}]}
 }
 
 function getCourses(classId, termId){
     // query would be run here to fetch all courses
-    return {Class: "5A", Term: "2021", Courses: {1: "Maths", 2:"English", 3:"Pakistan Studies", 4:"Urdu", 5:"Science", 6:"Islamiat"}};
+    return {Class: "5A", Term: "2021", Courses: ["Maths", "English", "Pakistan Studies", "Urdu", "Science", "Islamiat"]};
 }
 
+function getAttendanceToday(classId, termId){
+    // query would be run here to fetch daily attendance record
+    return {2423: "P", 3142:"A", 5432:"P", 5483: "P", 8746: "P", 6543: "P", 3564: "P", 5948: "P", 4634: "P", 3984: "P"}
 
-
+}
 
 
 function getGrades(studentID, courseID){
