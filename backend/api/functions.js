@@ -33,4 +33,4 @@ function getGrades(studentID, courseID){
 
 
 
-module.exports = { getStudents, getCourses, getGrades }; 
+module.exports = { getStudents, getCourses, getGrades, getAttendanceToday}; 
