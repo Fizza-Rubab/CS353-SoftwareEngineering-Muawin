@@ -19,10 +19,10 @@ router.get('/', (req, res, next) => {
     cr = Object.keys(courses.Courses).length;
     const Grades = {};
 
-    for (let i = 1; i <= st; i++) {
+    for (let i = 0; i < st; i++) {
       var name = students.Students[i].Name;
       Grades[name] = {};
-      for (let j = 1; j<= cr; j++) {
+      for (let j = 0; j< cr; j++) {
         grades = data.getGrades(students.Students[i].Id, j);
         course = courses.Courses[j];
         Grades[name][course] = {}
@@ -30,26 +30,25 @@ router.get('/', (req, res, next) => {
       }
     }
 
-    for (let i = 1; i <= st; i++){
+    for (let i = 1; i <= 1; i++){
       var name = students.Students[i].Name;
         
-    }
 
-    const doc = new PDFDocument();
+      const doc = new PDFDocument();
 
       // Pipe its output somewhere, like to a file or HTTP response
       // See below for browser usage
       doc.pipe(fs.createWriteStream('G:\\SEM 6\\SOFTWARE ENGINEERING\\project\\Muawin-SE\\backend\\reports\\output.pdf'));
       const table = {
-        title: "Title",
-        subtitle: "Subtitle",
+        title: "Term End Report",
+        subtitle: name,
         headers: [
-          { label:"Name", property: 'name', width: 60, renderer: null },
-          { label:"Description", property: 'description', width: 150, renderer: null }, 
-          { label:"Price 1", property: 'price1', width: 100, renderer: null }, 
-          { label:"Price 2", property: 'price2', width: 100, renderer: null }, 
-          { label:"Price 3", property: 'price3', width: 80, renderer: null }, 
-          { label:"Price 4", property: 'price4', width: 43, 
+          { label:"Course", property: 'name', width: 60, renderer: null },
+          { label:"Test 1", property: 'description', width: 150, renderer: null }, 
+          { label:"Test 2", property: 'price1', width: 100, renderer: null }, 
+          { label:"Midterm", property: 'price2', width: 100, renderer: null }, 
+          { label:"Test 3", property: 'price3', width: 80, renderer: null }, 
+          { label:"Final", property: 'price4', width: 43, 
             renderer: (value, indexColumn, indexRow, row) => { return `U$ ${Number(value).toFixed(2)}` } 
           },
         ],
@@ -103,6 +102,9 @@ router.get('/', (req, res, next) => {
       });
     
     doc.end();
+    }
+
+    
  
 
     res.status(200).json(Grades);
