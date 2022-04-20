@@ -15,7 +15,7 @@ function getStudents(classId, termId){
 
 function getCourses(classId, termId){
     // query would be run here to fetch all courses
-    return {Class: "5A", Term: "2021", Courses: {1: "Maths", 2: "English", 3: "Pakistan Studies", 4:"Urdu", 5:"Science", 6:"Islamiat"}};
+    return {Class: "5A", Term: "2021", Courses: [{Id:1, Name: "Maths"}, {Id:2, Name: "English"}, {Id:3, Name: "Urdu"}, {Id:4, Name: "Pakistan Studies"}, {Id:5, Name: "Islmamiat"}, {Id:6, Name: "Science"}]};
 }
 
 function getAttendanceToday(classId, termId){
