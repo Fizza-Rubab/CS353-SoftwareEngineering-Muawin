@@ -3,6 +3,13 @@ const express = require('express');
 const router = express.Router();
 // const PDFDocument = require('pdfkit-table');
 var fonts = {
+  Roboto:{
+    normal: "../fonts/Roboto-Regular.ttf",
+    bold: '../fonts/Roboto-Bold.ttf',
+    italics: '../fonts/Roboto-Italic.ttf',
+    bolditalics: '../fonts/Roboto-BoldItalic.ttf'
+
+  },
   Courier: {
     normal: 'Courier',
     bold: 'Courier-Bold',
@@ -82,8 +89,38 @@ router.get('/', (req, res, next) => {
         {text: 'Average: ' + averageMidterm},
         {text:'\nFinal Exam', FontFace: 2, fontSize: 19 },
         {text: 'Average: ' + averageFinal},
-        "\n The course has been a successful venture. We hope to hear your feedback soon"
+        "\n The course has been a successful venture. We hope to hear your feedback soon\n",
+        'The following table has nothing more than a body array',
+        {
+          style: 'tableExample',
+          table: {
+            body: [
+              ['Column 1', 'Column 2', 'Column 3'],
+              ['One value goes here', 'Another one here', 'OK?']
+            ]
+          }
+        },
       ],
+      styles: {
+        header: {
+          fontSize: 18,
+          bold: true,
+          margin: [0, 0, 0, 10]
+        },
+        subheader: {
+          fontSize: 16,
+          bold: true,
+          margin: [0, 10, 0, 5]
+        },
+        tableExample: {
+          margin: [0, 5, 0, 15]
+        },
+        tableHeader: {
+          bold: true,
+          fontSize: 13,
+          color: 'black'
+        }
+      },
       defaultStyle: {
         font: 'Times'
       }
