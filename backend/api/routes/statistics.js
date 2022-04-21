@@ -3,20 +3,31 @@ const express = require('express');
 const router = express.Router();
 // const PDFDocument = require('pdfkit-table');
 var fonts = {
-  Roboto: {
-    normal: 'https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.66/fonts/Roboto/Roboto-Regular.ttf',
-    bold: 'https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.66/fonts/Roboto/Roboto-Medium.ttf',
-    italics: 'https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.66/fonts/Roboto/Roboto-Italic.ttf',
-    bolditalics: 'https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.66/fonts/Roboto/Roboto-MediumItalic.ttf'
+  Courier: {
+    normal: 'Courier',
+    bold: 'Courier-Bold',
+    italics: 'Courier-Oblique',
+    bolditalics: 'Courier-BoldOblique'
   },
-
-  // example of usage fonts in collection
-  PingFangSC: {
-    normal: ['https://example.com/fonts/pingfang.ttc', 'PingFangSC-Regular'],
-    bold: ['https://example.com/fonts/pingfang.ttc', 'PingFangSC-Semibold'],
+  Helvetica: {
+    normal: 'Helvetica',
+    bold: 'Helvetica-Bold',
+    italics: 'Helvetica-Oblique',
+    bolditalics: 'Helvetica-BoldOblique'
+  },
+  Times: {
+    normal: 'Times-Roman',
+    bold: 'Times-Bold',
+    italics: 'Times-Italic',
+    bolditalics: 'Times-BoldItalic'
+  },
+  Symbol: {
+    normal: 'Symbol'
+  },
+  ZapfDingbats: {
+    normal: 'ZapfDingbats'
   }
-}
-
+};
 
 var PdfPrinter = require('pdfmake');
 var printer = new PdfPrinter(fonts);
@@ -56,21 +67,32 @@ router.get('/', (req, res, next) => {
     averageMidterm = (Midterm.reduce((partialSum, a) => partialSum + a, 0))/Midterm.length;
     averageFinal = (Final.reduce((partialSum, a) => partialSum + a, 0))/Final.length;
     console.log(averageA1, averageA2)
-    docDefinition = 	{content: [
-      {text: 'Tables', style: 'header'},
-      courseName,
-      'Official documentation is in progress, this document is just a glimpse of what is possible with pdfmake and its layout engine.',
-      {text: 'A simple table (no headers, no width specified, no spans, no styling)', style: 'subheader'},
-      'The following table has nothing more than a body array',
-      {
-        table: {
-          body: [
-            ['Column 1', 'Column 2', 'Column 3'],
-            ['One value goes here', 'Another one here', 'OK?']
-          ]
-        }
-      }]
-    }
+    var docDefinition = {
+      content: [
+        {text:'Course Statistics Report for ' + courseName,
+        fontSize: 27, alignment:"center" },
+        '\n\nThis is an extensive report that is to be shared with the management to include details mean standard deviation of all assignments and course work.',
+        {text:'\nAssignment A1', FontFace: 2, fontSize: 19 },
+        {text: 'Average: ' + averageA1},
+        {text:'\nAssignment A2', FontFace: 2, fontSize: 19 },
+        {text: 'Average: ' + averageA2},
+        {text:'\nAssignment A3', FontFace: 2, fontSize: 19 },
+        {text: 'Average: ' + averageA3},
+        {text:'\nMidterm Exam', FontFace: 2, fontSize: 19 },
+        {text: 'Average: ' + averageMidterm},
+        {text:'\nFinal Exam', FontFace: 2, fontSize: 19 },
+        {text: 'Average: ' + averageFinal},
+        "\n The course has been a successful venture. We hope to hear your feedback soon"
+      ],
+      defaultStyle: {
+        font: 'Times'
+      }
+
+    };
+    var pdfDoc = printer.createPdfKitDocument(docDefinition);
+    pdfDoc.pipe(fs.createWriteStream("../Statistic Reports/" + courseName+'-Statistics Report.pdf'));
+    pdfDoc.end();
+    
 
     res.status(200).json("Report Created");
 

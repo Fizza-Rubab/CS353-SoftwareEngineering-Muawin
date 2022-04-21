@@ -27,6 +27,7 @@
     "sinon": "^13.0.2"
   },
   "devDependencies": {
-    "nodemon": "^2.0.15"
+    "nodemon": "^2.0.15",
+    "pdfmake-font-generator": "^1.0.1"
   }
 }
