@@ -31,6 +31,11 @@ function getGrades(studentID, courseID){
     return Grades;
 }
 
+function validateTeacher(email, password){
+    if (email=="teacher@st.habib.edu.pk" && password=="teacher")
+        return true;
+    else
+        return false;
+}
 
-
-module.exports = { getStudents, getCourses, getGrades, getAttendanceToday}; 
+module.exports = { getStudents, getCourses, getGrades, getAttendanceToday, validateTeacher}; 

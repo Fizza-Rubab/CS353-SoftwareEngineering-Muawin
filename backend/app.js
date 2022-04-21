@@ -7,6 +7,7 @@ const termReportRoute = require('./api/routes/reports');
 const feedbackReports = require('./api/routes/feedback');
 const absence = require('./api/routes/absence');
 const statisticsReport = require('./api/routes/statistics');
+const teachersRoute =  require('./api/routes/teacher');
 
 app.use(morgan('dev')); // for logs in terminal 
 //app.use(bodyParser.urlencoded({extended: false}));
@@ -30,7 +31,9 @@ app.use((req, res, next) =>{
 app.use('/term-reports', termReportRoute);
 // app.use('/feedback-reports', feedbackReports);
 app.use('/absence', absence);
-// app.use('/statistics-report', statisticsReport);
+app.use('/statistics-report', statisticsReport);
+app.use('/teacher', teachersRoute);
+
 
 app.use((req, res, next) => {
     const error = new Error('None of the routes were reached');
