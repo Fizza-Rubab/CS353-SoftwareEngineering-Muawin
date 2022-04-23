@@ -51,6 +51,10 @@ router.get('/', (req, res, next) => {
     const termId = req.query.termId;
     const course= req.query.courseId;
     var courses = functions.getCourses(classId, termId);
+    if (courses=="Incorrect classId" || courses=="Incorrect termId"){
+      res.status(401).json(courses);
+      return;
+    }
     var courseName = courses.Courses.find(o=>o.Id==course).Name
     console.log(courseName)
     A1 = [];
@@ -58,7 +62,12 @@ router.get('/', (req, res, next) => {
     A3 = [];
     Final = [];
     Midterm = [];
-    students = functions.getStudents(classId, termId).Students;
+    s = functions.getStudents(classId, termId);
+    if (s=="Incorrect classId" || s=="Incorrect termId"){
+      res.status(401).json(s);
+      return;
+    }
+    students = s.Students;
     for (let i = 1; i <= students.length; i++) {
         grades = functions.getGrades(students.Id, course);
         console.lo
