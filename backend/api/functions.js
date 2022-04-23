@@ -34,7 +34,7 @@ function getCourses(classId, termId){
 
 function getAttendanceToday(classId, termId){
     // query would be run here to fetch daily attendance record
-    return {2423: "P", 3142:"P", 5432:"P", 5483: "P", 8746: "P", 6543: "A", 3564: "P", 5948: "A", 4634: "P", 3984: "P"}
+    return {2423: "P", 3142:"P", 5432:"A", 5483: "P", 8746: "P", 6543: "P", 3564: "A", 5948: "P", 4634: "P", 3984: "P"}
 
 }
 
