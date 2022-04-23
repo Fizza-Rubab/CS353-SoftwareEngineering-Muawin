@@ -7,28 +7,28 @@ const { data } = require('jquery');
 
 function getStudents(classId, termId){
     // query would be run here to fetch all students 
-    data =  {Class: "5A", Term: "2021", Students: [{Id: 2423, Name:"Fakeha", Email:"fk@gmail.com"} , {Id: 3142, Name:"Shamsa", Email:"sd06162@st.habib.edu.pk"},
+    result =  {Class: "5A", Term: "2021", Students: [{Id: 2423, Name:"Fakeha", Email:"fk@gmail.com"} , {Id: 3142, Name:"Shamsa", Email:"sd06162@st.habib.edu.pk"},
     {Id: 5432, Name:"Aiman", Email:"aiman.umme39@gmail.com"}, {Id: 5483, Name:"Ruhama", Email:"rn06169@st.habib.edu.pk"}, {Id: 8746, Name:"Aumaima", Email:"ar06173@st.habib.edu.pk"}, 
     {Id: 6543, Name:"Marium", Email:"mr06187@st.habib.edu.pk"},
     {Id: 3564, Name:"Fizza", Email:"fr06161@st.habib.edu.pk" }, {Id: 5948, Name:"Adnan", Email:"aa06204@st.habib.edu.pk"}, 
     {Id: 4634, Name:"Mubaraka", Email:"ms06171@st.habib.edu.pk"}, {Id: 3984, Name:"Sameer", Email:"sp05565@st.habib.edu.pk"}]}
-    if (classId!=data.Class)
+    if (classId!=result.Class)
         return "Incorrect classId"
-    else if (termId!=data.Term)
+    else if (termId!=result.Term)
         return "Incorrect termId"
     else
-        return data
+        return result
 }
 
 function getCourses(classId, termId){
     // query would be run here to fetch all courses
-    data = {Class: "5A", Term: "2021", Courses: [{Id:1, Name: "Maths"}, {Id:2, Name: "English"}, {Id:3, Name: "Urdu"}, {Id:4, Name: "Pakistan Studies"}, {Id:5, Name: "Islmamiat"}, {Id:6, Name: "Science"}]};
-    if (classId!=data.Class)
+    result = {Class: "5A", Term: "2021", Courses: [{Id:1, Name: "Maths"}, {Id:2, Name: "English"}, {Id:3, Name: "Urdu"}, {Id:4, Name: "Pakistan Studies"}, {Id:5, Name: "Islmamiat"}, {Id:6, Name: "Science"}]};
+    if (classId!=result.Class)
         return "Incorrect classId"
-    else if (termId!=data.Term)
+    else if (termId!=result.Term)
         return "Incorrect termId"
     else
-        return data
+        return result
 }
 
 
