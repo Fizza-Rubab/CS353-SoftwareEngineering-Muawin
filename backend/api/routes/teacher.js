@@ -9,7 +9,10 @@ router.get('/', (req, res, next) => {
     console.log(email)
     if (functions.validateTeacher(email, password))
         res.status(200).json({message:"Teacher is Validated. You have been logged in."});  
-    });
+    else
+    res.status(403).json({message:"Please enter correct credentials"});   
+    })
+    ;
   
   
 module.exports = router;
