@@ -11,8 +11,14 @@ router.get('/', (req, resp, next) => {
   const password = req.query.password;
   const classId = req.query.classId;
   const termId = req.query.termId;
+  students = functions.getStudents(classId, termId);
+  if (students=="Incorrect classId" || students=="Incorrect termId"){
+    res.status(401).json(students);
+    return;
+  }
   attendance = functions.getAttendanceToday(classId, termId)
-  students = functions.getStudents(classId, termId)
+
+  
   // console.log(attendance)
   let url = "https://www.reddit.com/r/popular.json";
   var transporter = nodemailer.createTransport({
@@ -21,6 +27,14 @@ router.get('/', (req, resp, next) => {
       user: email,
       pass: password
     }
+  });
+  transporter.verify((error)=>{
+  if(!error) console.log("Ready to send");
+    else {
+      console.log(error);
+      res.status(401).json("Incorrect Credentials");
+      return;
+  }
   });
   let options = {json: true};
   request(url, options, (error, res, body) => {
@@ -52,6 +66,7 @@ router.get('/', (req, resp, next) => {
               transporter.sendMail(mailOptions, function(error, info){
                 if (error) {
                   console.log(error);
+                  res
                 } else {
                   console.log('Emails have been sent')
                 }
@@ -60,12 +75,9 @@ router.get('/', (req, resp, next) => {
         }
 
         }
-        resp.status(200).json({
-                  message: 'Email has been sent'
-              });
-        };
-  });
+        resp.status(200).json({message: 'Emails have been sent'});
+  };
 });
-
+});
 
 module.exports = router;
