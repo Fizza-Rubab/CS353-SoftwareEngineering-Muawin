@@ -49,10 +49,10 @@ router.get('/', (req, res, next) => {
       const doc = new PDFDocument();
       const pdfName = (Stname+'-'+idfetch).toString(); 
       doc.fontSize(20);
-      doc.font('Helvetica-Bold').text(`Term Report`, 240, 35);
+      doc.font('Helvetica-Bold').text(`Term Report`, 245, 35);
 
       doc.fontSize(14);
-      doc.font('Helvetica').text(Stname+' - '+idfetch, 250, 65  );
+      doc.font('Helvetica').text(Stname+' - '+idfetch, 100, 65  );
 
       // Pipe its output somewhere, like to a file or HTTP response
       // See below for browser usage
@@ -69,65 +69,21 @@ router.get('/', (req, res, next) => {
           { label:"Final", property: 'marks5', width: 60, align: 'center',  renderer: null },
           {label: "Percentage", property: 'percentage', width: 60, align: 'center',  renderer: null }, //(value, indexColumn, indexRow, row) => { return value*100}},
         ],
-        datas: [
-          { 
-            name: courses.Courses[0].Name, 
-            marks1: Grades[Stname][courses.Courses[0].Name].A1, 
-            marks2: Grades[Stname][courses.Courses[0].Name].A2, 
-            marks3: Grades[Stname][courses.Courses[0].Name].Midterm, 
-            marks4: Grades[Stname][courses.Courses[0].Name].A3, 
-            marks5: Grades[Stname][courses.Courses[0].Name].Final,
-            percentage: ((Grades[Stname][courses.Courses[0].Name].A1*0.15) + (Grades[Stname][courses.Courses[0].Name].A2*0.15) + (Grades[Stname][courses.Courses[0].Name].A3*0.15) + (Grades[Stname][courses.Courses[0].Name].Midterm*0.25) + (Grades[Stname][courses.Courses[0].Name].Final*0.30)) ,
-          },
-          { 
-            name: courses.Courses[1].Name, 
-            marks1: Grades[Stname][courses.Courses[1].Name].A1, 
-            marks2: Grades[Stname][courses.Courses[1].Name].A2, 
-            marks3: Grades[Stname][courses.Courses[1].Name].Midterm, 
-            marks4: Grades[Stname][courses.Courses[1].Name].A3, 
-            marks5: Grades[Stname][courses.Courses[1].Name].Final,
-            percentage: ((Grades[Stname][courses.Courses[1].Name].A1*0.15) + (Grades[Stname][courses.Courses[1].Name].A2*0.15) + (Grades[Stname][courses.Courses[1].Name].A3*0.15) + (Grades[Stname][courses.Courses[1].Name].Midterm*0.25) + (Grades[Stname][courses.Courses[1].Name].Final*0.30)) ,
-          },
-          {
-            name: courses.Courses[2].Name, 
-            marks1: Grades[Stname][courses.Courses[2].Name].A1, 
-            marks2: Grades[Stname][courses.Courses[2].Name].A2, 
-            marks3: Grades[Stname][courses.Courses[2].Name].Midterm, 
-            marks4: Grades[Stname][courses.Courses[2].Name].A3, 
-            marks5: Grades[Stname][courses.Courses[2].Name].Final,
-            percentage: ((Grades[Stname][courses.Courses[2].Name].A1*0.15) + (Grades[Stname][courses.Courses[2].Name].A2*0.15) + (Grades[Stname][courses.Courses[2].Name].A3*0.15) + (Grades[Stname][courses.Courses[2].Name].Midterm*0.25) + (Grades[Stname][courses.Courses[2].Name].Final*0.30)) ,
-          },
-          {
-            name: courses.Courses[3].Name, 
-            marks1: Grades[Stname][courses.Courses[3].Name].A1, 
-            marks2: Grades[Stname][courses.Courses[3].Name].A2, 
-            marks3: Grades[Stname][courses.Courses[3].Name].Midterm, 
-            marks4: Grades[Stname][courses.Courses[3].Name].A3, 
-            marks5: Grades[Stname][courses.Courses[3].Name].Final,
-            percentage: ((Grades[Stname][courses.Courses[3].Name].A1*0.15) + (Grades[Stname][courses.Courses[3].Name].A2*0.15) + (Grades[Stname][courses.Courses[3].Name].A3*0.15) + (Grades[Stname][courses.Courses[3].Name].Midterm*0.25) + (Grades[Stname][courses.Courses[3].Name].Final*0.30)) ,
-          },
-          {
-            name: courses.Courses[4].Name, 
-            marks1: Grades[Stname][courses.Courses[4].Name].A1, 
-            marks2: Grades[Stname][courses.Courses[4].Name].A2, 
-            marks3: Grades[Stname][courses.Courses[4].Name].Midterm, 
-            marks4: Grades[Stname][courses.Courses[4].Name].A3, 
-            marks5: Grades[Stname][courses.Courses[4].Name].Final,
-            percentage: ((Grades[Stname][courses.Courses[4].Name].A1*0.15) + (Grades[Stname][courses.Courses[4].Name].A2*0.15) + (Grades[Stname][courses.Courses[4].Name].A3*0.15) + (Grades[Stname][courses.Courses[4].Name].Midterm*0.25) + (Grades[Stname][courses.Courses[4].Name].Final*0.30)) ,
-          },
-          {
-            name: courses.Courses[5].Name, 
-            marks1: Grades[Stname][courses.Courses[5].Name].A1, 
-            marks2: Grades[Stname][courses.Courses[5].Name].A2, 
-            marks3: Grades[Stname][courses.Courses[5].Name].Midterm, 
-            marks4: Grades[Stname][courses.Courses[5].Name].A3, 
-            marks5: Grades[Stname][courses.Courses[5].Name].Final,
-            percentage: ((Grades[Stname][courses.Courses[5].Name].A1*0.15) + (Grades[Stname][courses.Courses[5].Name].A2*0.15) + (Grades[Stname][courses.Courses[5].Name].A3*0.15) + (Grades[Stname][courses.Courses[5].Name].Midterm*0.25) + (Grades[Stname][courses.Courses[5].Name].Final*0.30)) ,
-          },
-          // {...},
-        ],
+        datas: [ ]
       };
-    
+
+      for (let k = 0; k< cr; k++) {
+        table.datas.push({
+          name: courses.Courses[k].Name, 
+          marks1: Grades[Stname][courses.Courses[k].Name].A1, 
+          marks2: Grades[Stname][courses.Courses[k].Name].A2, 
+          marks3: Grades[Stname][courses.Courses[k].Name].Midterm, 
+          marks4: Grades[Stname][courses.Courses[k].Name].A3, 
+          marks5: Grades[Stname][courses.Courses[k].Name].Final,
+          percentage: ((Grades[Stname][courses.Courses[k].Name].A1*0.15) + (Grades[Stname][courses.Courses[k].Name].A2*0.15) + (Grades[Stname][courses.Courses[k].Name].A3*0.15) + (Grades[Stname][courses.Courses[k].Name].Midterm*0.25) + (Grades[Stname][courses.Courses[k].Name].Final*0.30)), 
+        });
+       }
+       
       doc.table(table, {
         prepareHeader: () => doc.font("Helvetica-Bold").fontSize(10),
         prepareRow: (row, indexColumn, indexRow, rectRow, rectCell) => {
