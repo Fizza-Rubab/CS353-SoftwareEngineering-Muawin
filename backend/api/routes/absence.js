@@ -1,3 +1,4 @@
+const { verify } = require('crypto');
 const express = require('express');
 const router = express.Router();
 const fs = require('fs');
@@ -13,11 +14,10 @@ router.get('/', (req, resp, next) => {
   const termId = req.query.termId;
   students = functions.getStudents(classId, termId);
   if (students=="Incorrect classId" || students=="Incorrect termId"){
-    res.status(401).json(students);
+    resp.status(401).json(students);
     return;
   }
   attendance = functions.getAttendanceToday(classId, termId)
-
   
   // console.log(attendance)
   let url = "https://www.reddit.com/r/popular.json";
@@ -28,13 +28,19 @@ router.get('/', (req, resp, next) => {
       pass: password
     }
   });
-  transporter.verify((error)=>{
-  if(!error) console.log("Ready to send");
-    else {
+  var mailOptions = {
+    from: email,
+    to: email,
+    subject: 'testemail',
+    text: 'test email'
+  };                  
+  transporter.sendMail(mailOptions, function(error, info){
+    if (error) {
       console.log(error);
-      res.status(401).json("Incorrect Credentials");
-      return;
-  }
+      resp.status(401).json('Incorrect Credentials')
+    } else {
+      console.log('Correct credentials')
+    }
   });
   let options = {json: true};
   request(url, options, (error, res, body) => {
@@ -75,9 +81,8 @@ router.get('/', (req, resp, next) => {
         }
 
         }
-        resp.status(200).json({message: 'Emails have been sent'});
   };
+  resp.status(200).json({message: 'Emails have been sent'});
 });
 });
-
 module.exports = router;
