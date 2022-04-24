@@ -1,10 +1,3 @@
-const expect = require('chai').expect;
-var assert = require('assert');
-const request = require('request');
-const sinon = require('sinon');
-var mocha = require('mocha');
-const { data } = require('jquery');
-
 function getStudents(classId, termId){
     // query would be run here to fetch all students 
     result =  {Class: "5A", Term: "2021", Students: [{Id: 2423, Name:"Fakeha", Email:"fk@gmail.com"} , {Id: 3142, Name:"Shamsa", Email:"sd06162@st.habib.edu.pk"},
