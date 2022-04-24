@@ -6,12 +6,13 @@ const router = express.Router();
 const PDFDocument = require('pdfkit-table');
 const fs = require('fs');
 const { strike } = require("pdfkit");
-
-// api endpoint paramters for get request for term end report : classId, termId
+var nodemailer = require('nodemailer');
+// api endpoint paramters for get request for term end report : classId, termId, email 
 router.get('/', (req, res, next) => {
     const classId = req.query.classId;
     const termId = req.query.termId;
-    console.log(classId,  termId);
+    const email = req.query.email; 
+    console.log(classId,  termId, email);
 
     students = data.getStudents(classId, termId);
     courses = data.getCourses(classId, termId);
@@ -83,7 +84,7 @@ router.get('/', (req, res, next) => {
           percentage: ((Grades[Stname][courses.Courses[k].Name].A1*0.15) + (Grades[Stname][courses.Courses[k].Name].A2*0.15) + (Grades[Stname][courses.Courses[k].Name].A3*0.15) + (Grades[Stname][courses.Courses[k].Name].Midterm*0.25) + (Grades[Stname][courses.Courses[k].Name].Final*0.30)), 
         });
        }
-       
+
       doc.table(table, {
         prepareHeader: () => doc.font("Helvetica-Bold").fontSize(10),
         prepareRow: (row, indexColumn, indexRow, rectRow, rectCell) => {
@@ -98,6 +99,35 @@ router.get('/', (req, res, next) => {
     
     doc.end();
     }
+
+    if(email=='Y'){
+
+      var transporter = nodemailer.createTransport({
+        service: 'gmail',
+        auth: {
+          user: 'ruhamanaeem.edu@gmail.com',
+          pass: '*'
+          
+        }
+      });
+
+      var mailOptions = {
+        from: 'ruhamanaeem.edu@gmail.com',
+        to: students.Students[7].Email,
+        subject: 'Sending Email using Node.js',
+        text: 'That was easy!'
+      };
+
+      transporter.sendMail(mailOptions, function(error, info){
+        if (error) {
+          console.log(error);
+        } else {
+          console.log('Email sent: ' + info.response);
+        }
+      });
+    }
+
+
 
     
  
