@@ -1,10 +1,3 @@
-const expect = require('chai').expect;
-var assert = require('assert');
-const request = require('request');
-const sinon = require('sinon');
-var mocha = require('mocha');
-const { data } = require('jquery');
-
 function getStudents(classId, termId){
     // query would be run here to fetch all students 
     result =  {Class: "5A", Term: "2021", Students: [{Id: 2423, Name:"Fakeha", Email:"fk@gmail.com"} , {Id: 3142, Name:"Shamsa", Email:"sd06162@st.habib.edu.pk"},
@@ -22,7 +15,7 @@ function getStudents(classId, termId){
 
 function getCourses(classId, termId){
     // query would be run here to fetch all courses
-    result = {Class: "5A", Term: "2021", Courses: [{Id:1, Name: "Maths"}, {Id:2, Name: "English"}, {Id:3, Name: "Urdu"}, {Id:4, Name: "Pakistan Studies"}, {Id:5, Name: "Islmamiat"}, {Id:6, Name: "Science"}]};
+    result = {Class: "5A", Term: "2021", Courses: [{Id:1, Name: "Maths"}, {Id:2, Name: "English"}, {Id:3, Name: "Urdu"}, {Id:4, Name: "Pakistan Studies"}, {Id:5, Name: "Islamiat"}, {Id:6, Name: "Science"}]};
     if (classId!=result.Class)
         return "Incorrect classId"
     else if (termId!=result.Term)
