@@ -23,6 +23,17 @@ router.get('/classes', (req, res, next) => {
     // res.status(403).json({message:"Please enter correct credentials"});   
     // })
 });
+
+router.get('/classes/students', (req, res, next) => {
+    // if (functions.validateTeacher(email, password))
+    const classId = req.query.classId;
+    const termId = req.query.termId;
+    let students = functions.getStudents(classId, termId)["Students"]
+    res.status(200).json(students);  
+    // else
+    // res.status(403).json({message:"Please enter correct credentials"});   
+    // })
+});
   
   
 module.exports = router;

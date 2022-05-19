@@ -8,10 +8,10 @@ const fs = require('fs');
 const { strike } = require("pdfkit");
 var nodemailer = require('nodemailer');
 // api endpoint paramters for get request for term end report : classId, termId, email 
-router.get('/', (req, res, next) => {
-    const classId = req.query.classId;
-    const termId = req.query.termId;
-    const email = req.query.email; 
+router.post('/', (req, res, next) => {
+    const classId = req.body.classId;
+    const termId = req.body.termId;
+    const email = req.body.email; 
     console.log(classId,  termId, email);
 
     students = data.getStudents(classId, termId);
@@ -57,7 +57,7 @@ router.get('/', (req, res, next) => {
 
       // Pipe its output somewhere, like to a file or HTTP response
       // See below for browser usage
-      doc.pipe(fs.createWriteStream('G:\\SEM 6\\SOFTWARE ENGINEERING\\project\\Muawin-SE\\backend\\reports\\'+pdfName+'.pdf'));
+      doc.pipe(fs.createWriteStream("../Term End Reports/"+pdfName+'.pdf'));
       const table = {
         // title: ,
         // subtitle:doc.font('Times-Roman').text(Stname, 270, 50),

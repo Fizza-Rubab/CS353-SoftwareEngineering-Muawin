@@ -1,10 +1,11 @@
 function getStudents(classId, termId){
     // query would be run here to fetch all students 
-    result =  {Class: "5A", Term: "2021", Students: [{Id: 2423, Name:"Fakeha", Email:"fk@gmail.com"} , {Id: 3142, Name:"Shamsa", Email:"sd06162@st.habib.edu.pk"},
+    result =  {Class: "5A", Term: "2021", Students: [{Id: 2423, Name:"Fakeha", Email:"ruhamanaeem.edu@gmail.com"} , {Id: 3142, Name:"Shamsa", Email:"sd06162@st.habib.edu.pk"},
     {Id: 5432, Name:"Aiman", Email:"aiman.umme39@gmail.com"}, {Id: 5483, Name:"Ruhama", Email:"rn06169@st.habib.edu.pk"}, {Id: 8746, Name:"Aumaima", Email:"ar06173@st.habib.edu.pk"}, 
     {Id: 6543, Name:"Marium", Email:"mr06187@st.habib.edu.pk"},
     {Id: 3564, Name:"Fizza", Email:"fr06161@st.habib.edu.pk" }, {Id: 5948, Name:"Adnan", Email:"aa06204@st.habib.edu.pk"}, 
     {Id: 4634, Name:"Mubaraka", Email:"ms06171@st.habib.edu.pk"}, {Id: 3984, Name:"Sameer", Email:"sp05565@st.habib.edu.pk"}]}
+    result = {Class: "5A", Term: "2021", Students:[{Id: 3564, Name:"Fizza", Email:"fr06161@st.habib.edu.pk" },{Id: 5483, Name:"Ruhama", Email:"rn06169@st.habib.edu.pk"}]}
     if (classId!=result.Class)
         return "Incorrect classId"
     else if (termId!=result.Term)

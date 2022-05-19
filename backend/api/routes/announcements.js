@@ -1,11 +1,14 @@
-const functions = require("../functions.js");
+const { verify } = require('crypto');
 const express = require('express');
 const router = express.Router();
-var fs = require('fs');
+const fs = require('fs');
+var nodemailer = require('nodemailer');
+const request = require('request');
+const functions = require("../functions.js");
 
-router.get('/', (req, res, next) => {
-    const classId = req.query.classId;
-    const termId = req.query.termId;
+router.post('/', (req, res, next) => {
+    const classId = req.body.classId;
+    const termId = req.body.termId;
     const message = req.body.message;
     const subject= req.body.subject;
     const email = req.body.email;
@@ -43,7 +46,7 @@ router.get('/', (req, res, next) => {
     });
       
     students = s.Students;
-    studentsInfo.forEach(sendEmail);
+    students.forEach(sendEmail);
     function sendEmail(s, index){
         receiver = s.Email
         var mailOptions = {
@@ -61,6 +64,7 @@ router.get('/', (req, res, next) => {
         }
         });
     }
+    res.status(200).json({message: 'Emails have been sent'});
 });
 
 
