@@ -15,6 +15,15 @@ router.post('/', (req, res, next) => {
     })
     ;
   
+router.get('/classes', (req, res, next) => {
+    // if (functions.validateTeacher(email, password))
+    let classes = functions.getClasses()
+    res.status(200).json(classes);  
+    // else
+    // res.status(403).json({message:"Please enter correct credentials"});   
+    // })
+});
+  
   
 module.exports = router;
   

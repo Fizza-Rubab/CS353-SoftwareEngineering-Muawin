@@ -12,7 +12,10 @@ function getStudents(classId, termId){
     else
         return result
 }
-
+function getClasses(){
+    console.log([{class: "5A", term: 2021}, {class: "3B", term: 2020}, {class:"4C", term: 2021}])
+    return [{class: "5A", term: 2021}, {class: "3B", term: 2020}, {class:"4C", term: 2021}]
+}
 function getCourses(classId, termId){
     // query would be run here to fetch all courses
     result = {Class: "5A", Term: "2021", Courses: [{Id:1, Name: "Maths"}, {Id:2, Name: "English"}, {Id:3, Name: "Urdu"}, {Id:4, Name: "Pakistan Studies"}, {Id:5, Name: "Islamiat"}, {Id:6, Name: "Science"}]};
@@ -45,4 +48,4 @@ function validateTeacher(email, password){
         return false;
 }
 
-module.exports = { getStudents, getCourses, getGrades, getAttendanceToday, validateTeacher}; 
+module.exports = { getStudents, getCourses, getGrades, getAttendanceToday, validateTeacher, getClasses}; 
