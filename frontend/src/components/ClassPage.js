@@ -7,8 +7,8 @@ import axios from 'axios';
 const  ClassPage = (props) => {
   const location = useLocation();
   const state = location.state;
-  const [subject, setSubject] = useState(0)
-  const [message, setMessage] = useState(0)
+  const [subject, setSubject] = useState("Subject")
+  const [message, setMessage] = useState("Message/Body")
   const classN = state.class;
   const term = state.term
    // termend = () =>{
@@ -35,6 +35,11 @@ return (
     You can perform the following functions
   </div>
 </div>
+<div className="card">
+  <div className="card-body text-center">
+       
+  </div>
+</div>
 <div className='text-center'>
 <button type="button" className="btn btn-outline-warning" onClick={()=>{
   let data = {classId: classN, termId:term, email:"fizzaa39@gmail.com"}
@@ -48,6 +53,18 @@ return (
   .catch(err => {
     console.log("Error in generating reports!");
   })}} >Download Term End Reports</button>
+  <button type="button" className="btn btn-outline-warning" onClick={()=>{
+  let data = {classId: classN, termId:term}
+  console.log(data)
+    axios
+  .post('http://localhost:5000/statistics-report', data)
+  .then(res => {
+    alert("Your reports are being generated")
+    console.log(res);
+  })
+  .catch(err => {
+    console.log("Error in generating reports!");
+  })}} >Download Course Statistics Reports</button>
 <button type="button" className="btn btn-outline-warning" onClick={()=>{
   let data = {classId: classN, termId:term, email:"fizzaa39@gmail.com", password:"Silvermoon123?"}
   console.log(data)
@@ -84,11 +101,11 @@ return (
           <br />
 
           <div className='form-group'>
-            <input
+            <textarea
               type='text'
               placeholder='Message'
               name='Message'
-              className='form-control'
+              className='form-control input-large'
               value={message}
               // value={this.state.password}
               onChange={(e)=>setMessage(e.target.value)}

@@ -46,17 +46,12 @@ function getStandardDeviation (array) {
   return Math.sqrt(array.map(x => Math.pow(x - mean, 2)).reduce((a, b) => a + b) / n)
 }
 
-router.get('/', (req, res, next) => {
-    const classId = req.query.classId;
-    const termId = req.query.termId;
-    const course= req.query.courseId;
-    var courses = functions.getCourses(classId, termId);
-    if (courses=="Incorrect classId" || courses=="Incorrect termId"){
-      res.status(401).json(courses);
-      return;
-    }
-    var courseName = courses.Courses.find(o=>o.Id==course).Name
-    console.log(courseName)
+router.post('/', (req, res, next) => {
+    const classId = req.body.classId;
+    const termId = req.body.termId;
+    var courses = functions.getCourses(classId, termId).Courses;
+    console.log(courses)
+    courses.map((course) =>{
     A1 = [];
     A2 = [];
     A3 = [];
@@ -70,7 +65,6 @@ router.get('/', (req, res, next) => {
     students = s.Students;
     for (let i = 1; i <= students.length; i++) {
         grades = functions.getGrades(students.Id, course);
-        console.lo
         A1.push(grades.A1)
         A2.push(grades.A2)
         A3.push(grades.A3)
@@ -85,7 +79,7 @@ router.get('/', (req, res, next) => {
     console.log(averageA1, averageA2)
     var docDefinition = {
       content: [
-        {text:'Course Statistics Report for ' + courseName,
+        {text:'Course Statistics Report for ' + course.Name,
         fontSize: 27, alignment:"center" },
         '\n\nThis is an extensive report that is to be shared with the management to include details mean standard deviation of all assignments and course work.',
         {text:'\nAssignment A1', FontFace: 2, fontSize: 19 },
@@ -136,9 +130,9 @@ router.get('/', (req, res, next) => {
 
     };
     var pdfDoc = printer.createPdfKitDocument(docDefinition);
-    pdfDoc.pipe(fs.createWriteStream("../Statistic Reports/" + courseName+'-Statistics Report.pdf'));
+    pdfDoc.pipe(fs.createWriteStream("../Statistic Reports/" + course.Name+'-Statistics Report.pdf'));
     pdfDoc.end();
-    
+    });
 
     res.status(200).json("Report Created");
 

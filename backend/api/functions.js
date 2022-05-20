@@ -5,7 +5,7 @@ function getStudents(classId, termId){
     {Id: 6543, Name:"Marium", Email:"mr06187@st.habib.edu.pk"},
     {Id: 3564, Name:"Fizza", Email:"fr06161@st.habib.edu.pk" }, {Id: 5948, Name:"Adnan", Email:"aa06204@st.habib.edu.pk"}, 
     {Id: 4634, Name:"Mubaraka", Email:"ms06171@st.habib.edu.pk"}, {Id: 3984, Name:"Sameer", Email:"sp05565@st.habib.edu.pk"}]}
-    result = {Class: "5A", Term: "2021", Students:[{Id: 3564, Name:"Fizza", Email:"fr06161@st.habib.edu.pk" },{Id: 5483, Name:"Ruhama", Email:"rn06169@st.habib.edu.pk"}]}
+    result = {Class: "5A", Term: "2021", Students:[{Id: 5432, Name:"Aiman", Email:"aiman.umme39@gmail.com"}, {Id: 3564, Name:"Fizza", Email:"fr06161@st.habib.edu.pk" },{Id: 5483, Name:"Ruhama", Email:"rn06169@st.habib.edu.pk"}]}
     if (classId!=result.Class)
         return "Incorrect classId"
     else if (termId!=result.Term)
@@ -20,6 +20,7 @@ function getClasses(){
 function getCourses(classId, termId){
     // query would be run here to fetch all courses
     result = {Class: "5A", Term: "2021", Courses: [{Id:1, Name: "Maths"}, {Id:2, Name: "English"}, {Id:3, Name: "Urdu"}, {Id:4, Name: "Pakistan Studies"}, {Id:5, Name: "Islamiat"}, {Id:6, Name: "Science"}]};
+    console.log(result)
     if (classId!=result.Class)
         return "Incorrect classId"
     else if (termId!=result.Term)
@@ -31,7 +32,7 @@ function getCourses(classId, termId){
 
 function getAttendanceToday(classId, termId){
     // query would be run here to fetch daily attendance record
-    return {2423: "P", 3142:"P", 5432:"A", 5483: "P", 8746: "P", 6543: "P", 3564: "A", 5948: "P", 4634: "P", 3984: "P"}
+    return {2423: "P", 3142:"P", 5432:"A", 5483: "A", 8746: "P", 6543: "P", 3564: "A", 5948: "P", 4634: "P", 3984: "P"}
 
 }
 
