@@ -39,6 +39,7 @@ axios
 })
 .catch(err => {
   console.log("Error in Login!");
+  alert("Your credentials were incorrect, please try again")
 })
 };
 
